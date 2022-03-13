@@ -62,7 +62,7 @@ class Program
 
         if (divisorAmount == 1)         // Determines a prime number.
         {
-            WriteLine($"{num} is a prime.");
+            Write($"{num}\n");
         }
 
         IsNumHighestAntiPrime(divisorAmount, num);
@@ -81,19 +81,20 @@ class Program
     {
         try
         {
+            Write($"\nThe primes in the chosen interval are:\n");
             AlPrimesUpTo( ulong.Parse(args[0]));
-            WriteLine($"\n{antiPrime} is the highest antiprime in the interval, and it has {highestDivisorAmount + 1} divisors.\nIts divisors are ");
+            Write($"\n{antiPrime} is the highest antiprime in the interval, and it has {highestDivisorAmount + 1} divisors.\nIts divisors are:");
 
             foreach (ulong divisor in divisorList[Convert.ToInt32(antiPrime)])
             {
-                Write($" {divisor}\n");
+                Write($" {divisor}");
             }
 
-            Write($" {antiPrime}.");
+            Write($" {antiPrime}.\n ");
         }
         catch (Exception)
         {
-            WriteLine($"\nYou entered '{args[0]}', you must enter a positive number as a command line argument.\n Try 'dotnet run 135'.\n");
+            Write($"\nYou entered '{args[0]}', you must enter a positive number as a command line argument.\n Try 'dotnet run 135'.\n");
         }
     }
 }
