@@ -3,7 +3,6 @@ C:\Users\durim\Code\PrimeNumbers\bin\Debug\net5.0\PrimeNumbers.deps.json
 C:\Users\durim\Code\PrimeNumbers\bin\Debug\net5.0\PrimeNumbers.runtimeconfig.json
 C:\Users\durim\Code\PrimeNumbers\bin\Debug\net5.0\PrimeNumbers.runtimeconfig.dev.json
 C:\Users\durim\Code\PrimeNumbers\bin\Debug\net5.0\PrimeNumbers.dll
-C:\Users\durim\Code\PrimeNumbers\bin\Debug\net5.0\ref\PrimeNumbers.dll
 C:\Users\durim\Code\PrimeNumbers\bin\Debug\net5.0\PrimeNumbers.pdb
 C:\Users\durim\Code\PrimeNumbers\obj\Debug\net5.0\PrimeNumbers.csproj.AssemblyReference.cache
 C:\Users\durim\Code\PrimeNumbers\obj\Debug\net5.0\PrimeNumbers.GeneratedMSBuildEditorConfig.editorconfig
@@ -14,3 +13,4 @@ C:\Users\durim\Code\PrimeNumbers\obj\Debug\net5.0\PrimeNumbers.dll
 C:\Users\durim\Code\PrimeNumbers\obj\Debug\net5.0\ref\PrimeNumbers.dll
 C:\Users\durim\Code\PrimeNumbers\obj\Debug\net5.0\PrimeNumbers.pdb
 C:\Users\durim\Code\PrimeNumbers\obj\Debug\net5.0\PrimeNumbers.genruntimeconfig.cache
+C:\Users\durim\Code\PrimeNumbers\obj\Debug\net5.0\refint\PrimeNumbers.dll
