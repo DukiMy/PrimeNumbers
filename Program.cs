@@ -11,7 +11,8 @@
  amount of divisors.
 
  This program takes a number as a command line argument, and prints out all
- primes and the largest antiprime beginning from 1 to the number that is specified. 
+ primes and the largest antiprime beginning from 1 to the number that is specified.
+ The largest number allowed is 18'446'744'073'709'551'615, this is set by the limit of the 'ulong' type
 */
 
 using System;
@@ -20,9 +21,9 @@ using static System.Console;
 class Program
 {
     private static int highestDivisorAmount = 0;
-    private static int antiPrime = 0;
+    private static ulong antiPrime = 0;
 
-    private static void IsNumHighestAntiPrime(int divisorAmount, int num)
+    private static void IsNumHighestAntiPrime(int divisorAmount, ulong num)
     {
         // Checks to see if the provided 'divisorAmount' is larger than the 'highestDivisorAmount'.
         // If so, then that value is stored as the 'highestDivisorAmount', and the number that
@@ -34,14 +35,15 @@ class Program
             antiPrime = num;
         }
     }
-    private static void IsNumPrime(int num)
+
+    private static void IsNumPrime(ulong num)
     {
         // "divisorAmount" stores the amount of times that "num"
         // has been divided without leaving any remainders.
 
         int divisorAmount = 0;
 
-        for (var i = 1; i < num; i++)
+        for (ulong i = 1; i < num; i++)
         {
             if (num % i == 0)           // Checks if 'num' leaves any remainders.
             {
@@ -56,9 +58,10 @@ class Program
 
         IsNumHighestAntiPrime(divisorAmount, num);
     }
-    public static void AlPrimesUpTo(int num)
+
+    public static void AlPrimesUpTo(ulong num)
     {
-        for (var i = 0; i < num; i++)
+        for (ulong i = 2; i <= num; i++)
         {
             IsNumPrime(i);   
         }
@@ -68,13 +71,12 @@ class Program
     {
         try
         {
-            AlPrimesUpTo(int.Parse(args[0]));
+            AlPrimesUpTo( ulong.Parse(args[0]));
             WriteLine($"\n{antiPrime} is the highest antiprime in the interval, and it has {highestDivisorAmount + 1} divisors.");
         }
         catch (Exception)
         {
             WriteLine($"\nYou entered '{args[0]}', you must enter a positive number as a command line argument.\n Try 'dotnet run 135'.\n");
         }
-        
     }
 }
