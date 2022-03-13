@@ -12,16 +12,21 @@
 
  This program takes a number as a command line argument, and prints out all
  primes and the largest antiprime beginning from 1 to the number that is specified.
- The largest number allowed is 18'446'744'073'709'551'615, this is set by the limit of the 'ulong' type
+ It also stores the divisors of every number up to the specified number,
+ it prints out the divisors of the largest anti prime.
+ The largest number allowed is 18'446'744'073'709'551'615,
+ this is set by the storage capacity of the 'ulong' type
 */
 
 using System;
+using System.Collections.Generic;
 using static System.Console;
 
 class Program
 {
     private static int highestDivisorAmount = 0;
     private static ulong antiPrime = 0;
+    private static List<List<ulong>> divisorList = new List<List<ulong>>();
 
     private static void IsNumHighestAntiPrime(int divisorAmount, ulong num)
     {
@@ -40,6 +45,9 @@ class Program
     {
         // "divisorAmount" stores the amount of times that "num"
         // has been divided without leaving any remainders.
+        // It also stores all the divisors of num.
+
+        List<ulong> divisors = new List<ulong>();
 
         int divisorAmount = 0;
 
@@ -48,6 +56,7 @@ class Program
             if (num % i == 0)           // Checks if 'num' leaves any remainders.
             {
                 divisorAmount++;
+                divisors.Add(i);
             }
         }
 
@@ -57,11 +66,12 @@ class Program
         }
 
         IsNumHighestAntiPrime(divisorAmount, num);
+        divisorList.Add(divisors);  // Stores the divisors of num at an index equal to num.
     }
 
     public static void AlPrimesUpTo(ulong num)
     {
-        for (ulong i = 2; i <= num; i++)
+        for (ulong i = 0; i <= num; i++)
         {
             IsNumPrime(i);   
         }
@@ -72,7 +82,14 @@ class Program
         try
         {
             AlPrimesUpTo( ulong.Parse(args[0]));
-            WriteLine($"\n{antiPrime} is the highest antiprime in the interval, and it has {highestDivisorAmount + 1} divisors.");
+            WriteLine($"\n{antiPrime} is the highest antiprime in the interval, and it has {highestDivisorAmount + 1} divisors.\nIts divisors are ");
+
+            foreach (ulong divisor in divisorList[Convert.ToInt32(antiPrime)])
+            {
+                Write($" {divisor}\n");
+            }
+
+            Write($" {antiPrime}.");
         }
         catch (Exception)
         {
