@@ -8,10 +8,7 @@ using System.Threading.Tasks;
 namespace PrimeNumbers
 {
     internal static class PrintBox
-    {
-        private static int leftPos = 0;
-        private static int topPos = 0;
-        
+    {      
         private static int lengthOfLastPrime = Program.primes
                                                 .LastOrDefault()
                                                 .ToString()

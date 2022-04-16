@@ -19,6 +19,7 @@
 */
 
 using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using static System.Console;
@@ -27,12 +28,20 @@ namespace PrimeNumbers
 {
 
     // TODO: Set up a async load symbol.
+    // Set it up so that it puts itself in the path.
+
+    public class ServerClass
+    {
+
+    }
 
     class Program
     {
 
         private static int leftPos = 0;
         private static int topPos = 0;
+
+        private static ulong num = 0;
 
         public static List<ulong> primes = new List<ulong>();
         public static int highestDivisorAmount = 0;
@@ -80,7 +89,7 @@ namespace PrimeNumbers
             divisorList.Add(divisors);  // Stores the divisors of num at an index equal to num.
         }
 
-        public static void AlPrimesUpTo(ulong num)
+        public static void AlPrimesUpTo()
         {
             for (ulong i = 0; i <= num; i++)
             {
@@ -100,13 +109,30 @@ namespace PrimeNumbers
             CursorVisible = true;
         }
 
+        public static void LoadingSequence()
+        {
+            Write('.');
+        }
+
         static void Main(string[] args)
         {
             try
             {
                 Setup();
-                
-                AlPrimesUpTo(ulong.Parse(args[0]));
+
+                num = ulong.Parse(args[0]);
+
+                Thread ListPrimesInstance = new Thread(new ThreadStart(AlPrimesUpTo));
+
+                ListPrimesInstance.Start();
+
+                while (ListPrimesInstance.IsAlive)
+                {
+                    Thread.Sleep(1000);
+                    LoadingSequence();
+                }
+
+                //AlPrimesUpTo(ulong.Parse(args[0]));
 
                 if (Convert.ToInt32(args[0]) < 2)
                 {
@@ -120,7 +146,7 @@ namespace PrimeNumbers
             }
             catch (Exception)
             {
-                Write($"\nYou must enter a number that is greater than 2 as a command line argument.\n Try 'PrimeNumbers 360'.\n\n");
+                Write($"\nYou must enter a number that is greater than 2 as a command line argument.\nTry 'PrimeNumbers 360'.\n\n");
 
                 Terminate();
             }
