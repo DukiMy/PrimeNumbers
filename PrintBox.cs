@@ -11,20 +11,24 @@ namespace PrimeNumbers
     {
         private static int leftPos = 0;
         private static int topPos = 0;
+        
+        private static int lengthOfLastPrime = Program.primes
+                                                .LastOrDefault()
+                                                .ToString()
+                                                .Length;
 
-        public static void PrintPrimes()
+        private static int lengthOfDivisorList = Program.divisorList[Convert.ToInt32(Program.antiPrime)].Count;
+
+        public static void PrintPrimes(int cols)
         {
-            Write($"Table of prime numbers.\n");
+            // Box breaks when going less than 5 cols.
 
-            int lengthOfLastPrime = Program.primes
-                                    .LastOrDefault()
-                                    .ToString()
-                                    .Length;
+            Write($"\nTable of prime numbers.\n");
 
-            Write("┌"); Write(new string('─', lengthOfLastPrime * 20 + 20)); Write("┐");
+            Write("┌"); Write(new string('─', lengthOfLastPrime * cols + cols)); Write("┐");
             for (int i = 0; i < Program.primes.Count; i++)
             {
-                if (i % 20 == 0)
+                if (i % cols == 0)
                 {
                     if (i != 0)
                     {
@@ -37,36 +41,47 @@ namespace PrimeNumbers
                 Write($"{Program.primes[i]} {new string(' ', lengthOfLastPrime - Program.primes[i].ToString().Length)}");
             }
 
-            Write($"{new string(' ', (20 - (Program.primes.Count % 20)) * (1 + lengthOfLastPrime))}");
+            if ((Program.primes.Count) % cols != 0)
+            {
+                Write($"{new string(' ', (cols - (Program.primes.Count % cols)) * (1 + lengthOfLastPrime))}");
+            }
 
-            Write("│\n└"); Write(new string('─', lengthOfLastPrime * 20 + 20)); Write("┘");
+            Write("│\n└"); Write(new string('─', lengthOfLastPrime * cols + cols)); Write("┘");
         }
 
-        public static void PrintDivisors()
+        public static void PrintDivisors(int cols)
         {
-            Write($"\n{Program.antiPrime} is the highest antiprime in the interval, and it has {Program.highestDivisorAmount + 1} divisors.");
+            Write($"\n{Program.antiPrime} is the highest antiprime in the interval, and it has {Program.highestDivisorAmount + 1} divisors.\n");
+
+            Write("┌"); Write(new string('─', lengthOfLastPrime * cols + cols)); Write("┐");
+
+            int i = 0;
 
             foreach (ulong divisor in Program.divisorList[Convert.ToInt32(Program.antiPrime)])
             {
-                Write($" {divisor}");
+                if (i % cols == 0)
+                {
+                    if (i != 0)
+                    {
+                        Write("│");
+                    }
+
+                    Write("\n│");
+                }
+
+                Write($"{divisor} {new string(' ', lengthOfLastPrime - divisor.ToString().Length)}");
+
+                i++;
             }
 
-            Write($" {Program.antiPrime}.\n ");
-        }
+            Write($"{Program.antiPrime} ");
 
-        public static void PrintLoadSequence()
-        {
-            Console.SetCursorPosition(leftPos, topPos);
-            Write(@"/");
+            if ((lengthOfDivisorList + 1) % cols != 0)
+            {
+                Write($"{new string(' ', (cols - ((lengthOfDivisorList + 1) % cols)) * (1 + Program.antiPrime.ToString().Length))}");
+            }
 
-            Console.SetCursorPosition(leftPos, topPos);
-            Write(@"-");
-
-            Console.SetCursorPosition(leftPos, topPos);
-            Write(@"\");
-
-            Console.SetCursorPosition(leftPos, topPos);
-            Write(@"|");
+            Write("│\n└"); Write(new string('─', lengthOfLastPrime * cols + cols)); Write("┘\n\n");
         }
     }
 }

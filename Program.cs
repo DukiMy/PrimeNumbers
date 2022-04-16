@@ -26,6 +26,8 @@ using static System.Console;
 namespace PrimeNumbers
 {
 
+    // TODO: Set up a async load symbol.
+
     class Program
     {
 
@@ -106,16 +108,20 @@ namespace PrimeNumbers
                 
                 AlPrimesUpTo(ulong.Parse(args[0]));
 
-                PrintBox.PrintPrimes();
-                PrintBox.PrintDivisors();
+                if (Convert.ToInt32(args[0]) < 2)
+                {
+                    throw new Exception();
+                }
+
+                PrintBox.PrintPrimes(25);
+                PrintBox.PrintDivisors(25);
                 
                 Terminate();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Write($"\nYou must enter a positive number as a command line argument.\n Try 'PrimeNumbers 360'.\n");
+                Write($"\nYou must enter a number that is greater than 2 as a command line argument.\n Try 'PrimeNumbers 360'.\n\n");
 
-                Write(e);
                 Terminate();
             }
         }
