@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XgdIhwpt+XrcDczsZaXxLW/WPv+Q1j6OCHibsl0FD3xkx++oQt37DoIB4mU30fP2rCeudyJ/WdQSBRCww8FrlQ==",
+  "dgSpecHash": "PP5bfYYBupOrqhiWFpDKFvCQMltSH5I34t3UrodeH88EWODWNocWkBIGSQHpSh3JzmyZ3LZBq7ql5mhL7ir9zQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\durim\\Code\\PrimeNumbers\\PrimeNumbers.csproj",
+  "projectFilePath": "C:\\Users\\durim\\source\\repos\\PrimeNumbers\\PrimeNumbers.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -20,81 +20,104 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using static System.Console;
 
-class Program
+namespace PrimeNumbers
 {
-    private static int highestDivisorAmount = 0;
-    private static ulong antiPrime = 0;
-    private static List<List<ulong>> divisorList = new List<List<ulong>>();
 
-    private static void IsNumHighestAntiPrime(int divisorAmount, ulong num)
+    class Program
     {
-        // Checks to see if the provided 'divisorAmount' is larger than the 'highestDivisorAmount'.
-        // If so, then that value is stored as the 'highestDivisorAmount', and the number that
-        // gained that amount of divisors will also be stored as a 'antiPrime'.
-        
-        if (highestDivisorAmount < divisorAmount)
+
+        private static int leftPos = 0;
+        private static int topPos = 0;
+
+        public static List<ulong> primes = new List<ulong>();
+        public static int highestDivisorAmount = 0;
+        public static ulong antiPrime = 0;
+        public static List<List<ulong>> divisorList = new List<List<ulong>>();
+
+        private static void IsNumHighestAntiPrime(int divisorAmount, ulong num)
         {
-            highestDivisorAmount = divisorAmount;
-            antiPrime = num;
-        }
-    }
+            // Checks to see if the provided 'divisorAmount' is larger than the 'highestDivisorAmount'.
+            // If so, then that value is stored as the 'highestDivisorAmount', and the number that
+            // gained that amount of divisors will also be stored as a 'antiPrime'.
 
-    private static void IsNumPrime(ulong num)
-    {
-        // "divisorAmount" stores the amount of times that "num"
-        // has been divided without leaving any remainders.
-        // It also stores all the divisors of num.
-
-        List<ulong> divisors = new List<ulong>();
-
-        int divisorAmount = 0;
-
-        for (ulong i = 1; i < num; i++)
-        {
-            if (num % i == 0)           // Checks if 'num' leaves any remainders.
+            if (highestDivisorAmount < divisorAmount)
             {
-                divisorAmount++;
-                divisors.Add(i);
+                highestDivisorAmount = divisorAmount;
+                antiPrime = num;
             }
         }
 
-        if (divisorAmount == 1)         // Determines a prime number.
+        private static void IsNumPrime(ulong num)
         {
-            Write($"{num}\n");
-        }
+            // "divisorAmount" stores the amount of times that "num"
+            // has been divided without leaving any remainders.
+            // It also stores all the divisors of num.
 
-        IsNumHighestAntiPrime(divisorAmount, num);
-        divisorList.Add(divisors);  // Stores the divisors of num at an index equal to num.
-    }
+            List<ulong> divisors = new List<ulong>();
 
-    public static void AlPrimesUpTo(ulong num)
-    {
-        for (ulong i = 0; i <= num; i++)
-        {
-            IsNumPrime(i);   
-        }
-    }
+            int divisorAmount = 0;
 
-    static void Main(string[] args)
-    {
-        try
-        {
-            Write($"\nThe primes in the chosen interval are:\n");
-            AlPrimesUpTo( ulong.Parse(args[0]));
-            Write($"\n{antiPrime} is the highest antiprime in the interval, and it has {highestDivisorAmount + 1} divisors.\nIts divisors are:");
-
-            foreach (ulong divisor in divisorList[Convert.ToInt32(antiPrime)])
+            for (ulong i = 1; i < num; i++)
             {
-                Write($" {divisor}");
+                if (num % i == 0)           // Checks if 'num' leaves any remainders.
+                {
+                    divisorAmount++;
+                    divisors.Add(i);
+                }
             }
 
-            Write($" {antiPrime}.\n ");
+            if (divisorAmount == 1)         // Determines a prime number.
+            {
+                primes.Add(num);
+            }
+
+            IsNumHighestAntiPrime(divisorAmount, num);
+            divisorList.Add(divisors);  // Stores the divisors of num at an index equal to num.
         }
-        catch (Exception)
+
+        public static void AlPrimesUpTo(ulong num)
         {
-            Write($"\nYou entered '{args[0]}', you must enter a positive number as a command line argument.\n Try 'dotnet run 135'.\n");
+            for (ulong i = 0; i <= num; i++)
+            {
+                IsNumPrime(i);
+            }
+        }
+
+        public static void Setup()
+        {
+            (leftPos, topPos) = GetCursorPosition();
+            CursorVisible = false;
+        }
+
+        public static void Terminate()
+        {
+            (leftPos, topPos) = GetCursorPosition();
+            CursorVisible = true;
+        }
+
+        static void Main(string[] args)
+        {
+            try
+            {
+                Setup();
+                
+                AlPrimesUpTo(ulong.Parse(args[0]));
+
+                PrintBox.PrintPrimes();
+                PrintBox.PrintDivisors();
+                
+                Terminate();
+            }
+            catch (Exception e)
+            {
+                Write($"\nYou must enter a positive number as a command line argument.\n Try 'PrimeNumbers 360'.\n");
+
+                Write(e);
+                Terminate();
+            }
         }
     }
 }

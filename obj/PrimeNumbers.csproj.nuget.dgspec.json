@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\durim\\Code\\PrimeNumbers\\PrimeNumbers.csproj": {}
+    "C:\\Users\\durim\\source\\repos\\PrimeNumbers\\PrimeNumbers.csproj": {}
   },
   "projects": {
-    "C:\\Users\\durim\\Code\\PrimeNumbers\\PrimeNumbers.csproj": {
+    "C:\\Users\\durim\\source\\repos\\PrimeNumbers\\PrimeNumbers.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\durim\\Code\\PrimeNumbers\\PrimeNumbers.csproj",
+        "projectUniqueName": "C:\\Users\\durim\\source\\repos\\PrimeNumbers\\PrimeNumbers.csproj",
         "projectName": "PrimeNumbers",
-        "projectPath": "C:\\Users\\durim\\Code\\PrimeNumbers\\PrimeNumbers.csproj",
+        "projectPath": "C:\\Users\\durim\\source\\repos\\PrimeNumbers\\PrimeNumbers.csproj",
         "packagesPath": "C:\\Users\\durim\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\durim\\Code\\PrimeNumbers\\obj\\",
+        "outputPath": "C:\\Users\\durim\\source\\repos\\PrimeNumbers\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\durim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
