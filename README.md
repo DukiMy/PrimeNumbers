@@ -4,6 +4,7 @@ A program that outputs all primes and the largest anti-prime up until a given nu
  An example of a printout when calling 'PrimeNumbers 1000'.
  
  Table of prime numbers.
+ 
 ┌────────────────────────────────────────────────────────────┐
 │2   3   5   7   11  13  17  19  23  29  31  37  41  43  47  │
 │53  59  61  67  71  73  79  83  89  97  101 103 107 109 113 │
@@ -18,7 +19,9 @@ A program that outputs all primes and the largest anti-prime up until a given nu
 │877 881 883 887 907 911 919 929 937 941 947 953 967 971 977 │
 │983 991 997                                                 │
 └────────────────────────────────────────────────────────────┘
+
 840 is the highest antiprime in the interval, and it has 32 divisors.
+
 ┌────────────────────────────────────────────────────────────┐
 │1   2   3   4   5   6   7   8   10  12  14  15  20  21  24  │
 │28  30  35  40  42  56  60  70  84  105 120 140 168 210 280 │
