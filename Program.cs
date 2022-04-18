@@ -139,8 +139,8 @@ namespace PrimeNumbers
                     throw new Exception();
                 }
 
-                PrintBox.PrintPrimes(25);
-                PrintBox.PrintDivisors(25);
+                PrintBox.PrintPrimes(15);
+                PrintBox.PrintDivisors(15);
                 
                 Terminate();
             }
